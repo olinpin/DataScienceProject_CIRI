@@ -192,6 +192,20 @@ Comparing minority class recall between strategies for MobileNetV2:
 
 Class weights showed a modest improvement on the smallest class (bicycle accident: 0.82 → 0.86), but no consistent improvement across all minority classes. The gains were not large enough to offset the slight drop in majority class performance, resulting in an overall lower macro-F1 than no balancing.
 
+### Why No Balancing Wins for MobileNetV2
+
+MobileNetV2 with no balancing outperforms both balancing strategies for several compounding reasons.
+
+First, the class imbalance is mild (4:1 ratio). Balancing techniques have the most impact at extreme ratios (100:1 or worse); at 4:1 the model sees enough minority class examples to learn from without intervention.
+
+Second, MobileNetV2's ImageNet pre-training is strong enough to generalise from few examples. Tornado has only 272 images yet hits F1 0.93 — the pre-trained features transfer so effectively that the model does not need more data, just enough examples to direct those features at the right class.
+
+Third, hybrid resampling introduced noise. Oversampling ~228 bicycle accident images repeatedly produces many correlated variants of the same small set, risking the model memorising augmentation artefacts rather than class signal. The synthetic data is not truly new.
+
+Fourth, class weighting shifted the loss landscape in a way that hurt majority classes without consistently helping minority ones. Nuclear explosion recall dropped from 0.81 to 0.75 under class weights while bicycle accident improved only modestly (0.82 → 0.86).
+
+The no-balance model won because it trained on the most real, diverse data — the full training fold with no discarded majority samples and no synthetic duplicates. ResNet18 is weaker overall and genuinely benefits from class weighting, but MobileNetV2's pre-training is strong enough that the correction introduces more noise than it removes.
+
 ### ResNet18 Sensitivity to Balancing
 ResNet18 is notably more sensitive to the balancing strategy than MobileNetV2. Without balancing it achieves a macro-F1 of 0.8046 with high variance (±0.0250). With class weights it reaches 0.8417, nearly matching MobileNetV2. This suggests ResNet18's feature space is more susceptible to the class frequency signal in the loss function, while MobileNetV2's ImageNet pre-training provides a more robust initialization that compensates without explicit reweighting.
 

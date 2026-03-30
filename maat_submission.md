@@ -102,6 +102,8 @@ In total, 6 configurations were trained and evaluated (2 architectures × 3 stra
 
 MobileNetV2 consistently outperforms ResNet18. The best configuration is MobileNetV2 with no balancing (macro-F1 0.8503). Class weights substantially improved ResNet18 (0.8046 → 0.8417) but did not benefit MobileNetV2.
 
+MobileNetV2 with no balancing wins for several reasons: the 4:1 class imbalance is mild enough that the model sees sufficient minority examples without correction; strong ImageNet pre-training generalises well from few examples (tornado: 272 samples, F1 0.93); hybrid resampling introduced noise by repeatedly augmenting the same small set of images; and class weights shifted the loss landscape inconsistently, hurting some minority classes (nuclear explosion recall dropped 0.81 → 0.75) while only modestly helping others. The no-balance model trained on the most real, diverse data. ResNet18, being weaker overall, genuinely benefits from class weighting — MobileNetV2 does not need the correction.
+
 **Per-class highlights (best model):** Tornado (F1 0.93), wildfire (0.93), and car accident (0.92) were the easiest classes despite tornado being a minority class (272 samples) — demonstrating that visual distinctiveness matters more than data volume. Collapsed (F1 0.67) and oil spill (0.73) were the hardest, both visually ambiguous and easily confused with related categories (earthquake, flooded).
 
 Confusion matrices (all 6 configurations) are included in the appendix. They confirm that most errors occur between structurally similar categories: collapsed↔earthquake, oil spill↔flooded.
