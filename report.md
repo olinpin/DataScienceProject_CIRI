@@ -106,6 +106,19 @@ All metrics reported as **mean ± standard deviation across 5 folds**.
 
 ## 5. Results
 
+### Confusion Matrices
+
+All six confusion matrices are saved in the `figures/` directory. They can be viewed inline below (run the save cell in the notebook first to generate the files).
+
+| Configuration | Confusion Matrix |
+|---|---|
+| MobileNetV2 — no balance | ![](figures/cm_mobilenet_v2__no_balance.png) |
+| MobileNetV2 — hybrid | ![](figures/cm_mobilenet_v2__hybrid.png) |
+| MobileNetV2 — class weights | ![](figures/cm_mobilenet_v2__class_weights.png) |
+| ResNet18 — no balance | ![](figures/cm_resnet18__no_balance.png) |
+| ResNet18 — hybrid | ![](figures/cm_resnet18__hybrid.png) |
+| ResNet18 — class weights | ![](figures/cm_resnet18__class_weights.png) |
+
 ### Summary Table
 
 | Configuration | Accuracy (mean±std) | Macro-P | Macro-R | Macro-F1 | Wtd-F1 |
