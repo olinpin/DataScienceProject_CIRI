@@ -132,22 +132,24 @@ All six confusion matrices are saved in the `figures/` directory. They can be vi
 
 ### Per-Class Results — Best Model (MobileNetV2, No Balancing)
 
-| Class | Precision | Recall | F1 | Support |
-|---|---|---|---|---|
-| airplane accident | 0.86 | 0.80 | 0.83 | 854 |
-| bicycle accident | 0.93 | 0.82 | 0.87 | 228 |
-| car accident | 0.91 | 0.92 | **0.92** | 947 |
-| collapsed | 0.67 | 0.67 | 0.67 | 673 |
-| earthquake | 0.77 | 0.80 | 0.79 | 906 |
-| flooded | 0.88 | 0.92 | 0.90 | 939 |
-| ice storm | 0.88 | 0.89 | 0.88 | 607 |
-| nuclear explosion | 0.90 | 0.81 | 0.85 | 231 |
-| oil spill | 0.75 | 0.72 | 0.73 | 289 |
-| tornado | 0.93 | 0.92 | **0.93** | 272 |
-| volcanic eruption | 0.89 | 0.91 | 0.90 | 618 |
-| wildfire | 0.93 | 0.94 | **0.93** | 665 |
-| **macro avg** | **0.86** | **0.84** | **0.85** | 7229 |
-| **weighted avg** | **0.85** | **0.85** | **0.85** | 7229 |
+Class size categories: **Majority** (>800) · **Average** (600–800) · **Minority** (<300)
+
+| Class | Size | Precision | Recall | F1 | Support |
+|---|---|---|---|---|---|
+| airplane accident | Majority | 0.86 | 0.80 | 0.83 | 854 |
+| bicycle accident | Minority | 0.93 | 0.82 | 0.87 | 228 |
+| car accident | Majority | 0.91 | 0.92 | **0.92** | 947 |
+| collapsed | Average | 0.67 | 0.67 | 0.67 | 673 |
+| earthquake | Majority | 0.77 | 0.80 | 0.79 | 906 |
+| flooded | Majority | 0.88 | 0.92 | 0.90 | 939 |
+| ice storm | Average | 0.88 | 0.89 | 0.88 | 607 |
+| nuclear explosion | Minority | 0.90 | 0.81 | 0.85 | 231 |
+| oil spill | Minority | 0.75 | 0.72 | 0.73 | 289 |
+| tornado | Minority | 0.93 | 0.92 | **0.93** | 272 |
+| volcanic eruption | Average | 0.89 | 0.91 | 0.90 | 618 |
+| wildfire | Average | 0.93 | 0.94 | **0.93** | 665 |
+| **macro avg** | | **0.86** | **0.84** | **0.85** | 7229 |
+| **weighted avg** | | **0.85** | **0.85** | **0.85** | 7229 |
 
 ---
 
