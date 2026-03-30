@@ -42,7 +42,7 @@ The dataset is significantly imbalanced. The ratio between the largest class (ca
 ### Preprocessing and Cleaning
 All images were loaded and resized to **224×224 pixels** (RGB). 5 files were skipped due to corruption or unreadable formats. The final dataset contains **7,229 valid images** stored as uint8 arrays in the range [0, 255].
 
-During model training, images are normalized using ImageNet mean `[0.485, 0.456, 0.406]` and standard deviation `[0.229, 0.224, 0.225]`.
+During model training, images are normalized using ImageNet mean `[0.485, 0.456, 0.406]` and standard deviation `[0.229, 0.224, 0.225]` per RGB channel. These values are the mean and standard deviation of pixel intensities computed across the entire ImageNet training set. Since our models were pre-trained on ImageNet, their weights were optimized with inputs normalized this way — reusing the same normalization ensures our inputs match the distribution the pre-trained features expect, which is essential for effective transfer learning.
 
 ### Split Strategy
 Stratified 5-fold cross-validation was used. With k=5, each fold assigns **~80% of data to training and ~20% to validation**, while preserving the class distribution in both splits. No separate held-out test set was used; all evaluation is performed on the validation folds.
