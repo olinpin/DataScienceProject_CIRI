@@ -69,6 +69,8 @@ ResNet18 is a residual network with 18 layers. Its skip connections address the 
 
 ## 4. Experimental Setup
 
+![Pipeline Diagram](figures/pipeline_diagram.png)
+
 | Parameter | Value |
 |---|---|
 | Input image size | 224 × 224 × 3 |
