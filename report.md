@@ -32,6 +32,10 @@ This project aims to classify images into one of 12 incident categories using de
 | wildfire | 665 |
 | **Total** | **7,229** |
 
+### Sample Images
+
+![Sample images per class](figures/sample_images.png)
+
 ### Class Imbalance
 The dataset is significantly imbalanced. The ratio between the largest class (car accident, 947) and the smallest (bicycle accident, 228) is approximately 4:1.
 
@@ -154,6 +158,16 @@ Class size categories: **Majority** (>800) · **Average** (600–800) · **Minor
 ---
 
 ## 6. Error Analysis
+
+### Correct vs Incorrect Examples
+
+![Correct vs Incorrect](figures/correct_vs_incorrect.png)
+
+**Correct classifications (top row):** The model confidently identifies visually distinct classes — clear smoke plumes, vehicle wreckage, and funnel clouds provide unambiguous features.
+
+**Misclassified examples (bottom row):** Errors cluster around visually ambiguous scenes. Collapsed structures are mistaken for earthquake damage; murky water scenes are confused between oil spill and flooded.
+
+![All misclassified examples](figures/misclassified_examples.png)
 
 ### Hardest Classes
 **Collapsed** is the most difficult class across all six models, consistently scoring F1 between 0.59 and 0.68. This is likely due to visual ambiguity: a collapsed building can closely resemble earthquake damage, flooding aftermath, or general structural damage. The class also has a mid-range count (673), so the difficulty is primarily visual rather than a data volume issue.
