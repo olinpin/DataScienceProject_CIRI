@@ -180,6 +180,24 @@ Deng, J., et al. (2009). ImageNet: A Large-Scale Hierarchical Image Database. *C
 
 ---
 
+## ML Issues Addressed
+
+**Class imbalance:** The dataset has a 4:1 ratio between the largest class (car accident, 947 images) and the smallest (bicycle accident, 228). We compared three strategies: (A) no balancing, (B) class-weighted loss where per-class weights are computed as w_c = 1/count_c and applied to CrossEntropyLoss, and (C) hybrid resampling where minority classes are oversampled via augmentation and majority classes are undersampled to the median class size. MobileNetV2 with no balancing performed best — the 4:1 imbalance is mild enough that strong ImageNet pre-training compensates without correction. ResNet18 required class weighting to be competitive.
+
+**Overfitting:** Augmentation (horizontal flip, rotation, brightness) was applied to training folds only to improve generalisation without inflating validation metrics.
+
+---
+
+## Generalisation Capabilities
+
+Generalisation is evaluated using stratified 5-fold cross-validation. Stratification ensures class proportions are preserved in every fold, so results are not distorted by imbalance. Performance is reported as mean ± standard deviation across all 5 folds.
+
+The best model (MobileNetV2, no balancing) achieves accuracy 0.8523 ± 0.0090 and macro-F1 0.8503 ± 0.0111 — the low standard deviation indicates stable generalisation across different data splits. ResNet18 configurations show higher variance (std up to 0.027), suggesting less stable generalisation.
+
+Limitation: no held-out test set was used. All metrics are cross-validation estimates; performance on fully unseen data is not directly measured.
+
+---
+
 ## Appendix *(max 1000 words)*
 
 **Confusion matrices for all 6 configurations** (figures/cm_*.png):
